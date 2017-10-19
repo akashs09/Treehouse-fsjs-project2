@@ -53,11 +53,11 @@ function showPage(pageActive, studentList){
   let endIndex = 10*pageActive-1;
   //loop through and display only the selected students based on pg#
   for (let i = startIndex; i <= endIndex; i++) {
-    if (studentList[i] === null) {
-      break;
-    }
+    // if (studentList[i] === true) {
+    //   studentList[i].style.display= 'block';
+    // }
     studentList[i].style.display= 'block';
-
+    // break;
   }
 }
 
@@ -72,12 +72,12 @@ function searchList() {
   //check the full length and if its a substring then assign it to matchList array
   for (let i = 0; i < studentList.length; i++)
   {
-    if (((names[i].innerHTML).indexOf($searchString)) >-1 ||  ((emails[i].innerHTML).indexOf($searchString))>-1) {
+    if (((names[i].innerHTML.indexOf($searchString)) >-1 ||  ((emails[i].innerHTML.indexOf($searchString))>-1))) {
         j++;
-        // matchList[i]= '<li class="student-item cf">'+studentList[i].innerHTML+'</li>';
-        matchList[i] = studentList[i];
+        matchList.push(studentList[i]);
     }
   }
+  console.log(matchList.length);
   //check if anything was matched
    if (matchList.length === 0)
   {
