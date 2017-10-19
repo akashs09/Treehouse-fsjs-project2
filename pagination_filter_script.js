@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
 //store entire list
-const $studentList = $(".student-item");
-console.log($studentList);
+const studentList = document.querySelectorAll(".student-item");
+
 //grab refrerence to ul for event delegation
 const listBubble = document.querySelector('ul.student-list');
 
@@ -14,12 +14,11 @@ $('button').click(function() {
 });
 
 
-appendPageLinks($studentList);
+appendPageLinks(studentList);
 
-function appendPageLinks($studentList)
+function appendPageLinks(studentList)
 {
-  let studentListLength = $studentList.length; //11
-  console.log(studentListLength);
+  let studentListLength = studentList.length; //11
   //create # of pages (10 per page)
   let numOfPages = Math.ceil(studentListLength/10); //2
   //start dynamically creating the page links section
@@ -38,30 +37,28 @@ function appendPageLinks($studentList)
   $('.student-list').append($paginationLinksHTML);
   //find the active page number and assign it
   let pageActive = $('.active').text();
-  showPage(pageActive, $studentList);
+  showPage(pageActive, studentList);
   listBubble.addEventListener('click', (event) => {
     //  $('.active').toggleClass('active');
     $('.active').removeClass('active');
     $(event.target).addClass('active');
-    showPage(event.target.textContent,$studentList);
+    showPage(event.target.textContent,studentList);
   });
 
 }
 
-function showPage(pageActive, $studentList){
+function showPage(pageActive, studentList){
   $('.student-item').hide();
   let startIndex = 10*pageActive-10;
   let endIndex = 10*pageActive-1;
   //loop through and display only the selected students based on pg#
   for (let i = startIndex; i <= endIndex; i++) {
-    // if (studentList[i] === null) {
-    //   break;
-    // }
-  //   // studentList[i].style.display= 'block';
-    studentList[i].getElementsByTagName('li')[0].style.display = 'block';
-  //
-  // }
-}
+    if (studentList[i] === null) {
+      break;
+    }
+    studentList[i].style.display= 'block';
+
+  }
 }
 
 
